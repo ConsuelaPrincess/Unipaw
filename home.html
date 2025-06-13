@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分類寵物</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 找出所有「全選」的 checkbox
+            document.querySelectorAll("[class^='filter-all-']").forEach((allCheckbox) => {
+                const filterId = allCheckbox.className.replace("filter-all-", "dog-") + "-filter";
+                const filterOptions = document.querySelectorAll(
+                    `#${filterId} .filter-main input[type='checkbox']`);
+
+                if (!filterOptions.length) return; // 確保有對應選項
+
+                // 當「全選」被勾選時，其他選項全部選取或取消
+                allCheckbox.addEventListener("change", function () {
+                    filterOptions.forEach((checkbox) => {
+                        checkbox.checked = this.checked;
+                    });
+                });
+
+                // 監聽子選項變化，當有未勾選時，取消「全選」
+                filterOptions.forEach((checkbox) => {
+                    checkbox.addEventListener("change", function () {
+                        const allChecked = [...filterOptions].every(cb => cb.checked);
+                        allCheckbox.checked = allChecked;
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="search-container">
+                <input type="text" placeholder="搜尋你想領養的品種...">
+                <img class="non-actived" src="/img/search.svg" alt="">
+                <div>
+                    <button id="filter-btn"><img src="img/filter.svg" alt=""></button>
+                </div>
+            </div>
+
+            <div class="pet-tab">
+                <div class="active" data-tab="1"><img class="img-32" src="/img/tab-dog-actived.svg" alt=""></div>
+                <div data-tab="2"><img class="non-actived img-32"  src="/img/tab-cat.svg" alt=""></div>
+                <div data-tab="3"><img class="non-actived img-32"   src="/img/tab-rabbit.svg" alt=""></div>
+                <div data-tab="4"><img class="non-actived img-32"  src="/img/tab-mouse.svg" alt=""></div>
+                <div data-tab="5"><img class="non-actived img-32"  src="/img/tab-bird.svg" alt=""></div>
+            </div>
+        </header>
+        <nav>
+            <a href="paw.html"><img class="img-32" src="/img/nav-home-actived.svg" alt=""></a>
+            <a class="non-actived" href="c"><img class="img-32" src="/img/nav-heart.svg" alt=""></a>
+            <a class="circle-nav" href=""><img class="img-36" src="/img/nav-paw.svg" alt=""></a>
+            <a class="non-actived" href=""><img class="img-32" src="/img/nav-paw.svg" alt=""></a>
+            <a class="non-actived" href="chat.html"><img class="img-32" src="/img/nav-message.svg" alt=""></a>
+            <a class="non-actived" href="personal.html"><img class="img-32" src="/img/nav-personal.svg" alt=""></a>
+        </nav>
+        <main>
+            <div class="tab-content active" id="content-1">
+                <section>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (1).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">PinkMan</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (2).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Noah</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">5歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (3).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">李白</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">柴犬</span><span class="pet-data yellow-data">2歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (4).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">淑惠</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">12歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (5).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">福布斯</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">貴賓狗</span><span class="pet-data yellow-data">6歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (6).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">米開朗基羅</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">4歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">新北市立收容所</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (7).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">可魯貝洛斯</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">8歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (8).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Nana</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米格魯</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">張媽媽收容所</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (9).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">海恩</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/dog/dog (10).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">幸田一郎</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">1歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+            </div>
+            <div class="tab-content" id="content-2">
+                <section>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (1).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Lisa</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (2).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Midori</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">5歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (3).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">可魯貝洛斯</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">三花貓</span><span class="pet-data yellow-data">2歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (4).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">海膽</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">賓士貓</span><span class="pet-data yellow-data">12歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (5).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Latte</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">賓士貓</span><span class="pet-data yellow-data">6歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (6).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">淑惠</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">4歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (7).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">粒線體</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">虎斑貓</span><span class="pet-data yellow-data">8歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (8).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">米開朗基羅</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">黑貓</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (9).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">蝦仁</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">橘貓</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/cat/cat (10).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">月月</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">黑貓</span><span class="pet-data yellow-data">1歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+            </div>
+            <div class="tab-content" id="content-3">
+                <section>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (1).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">豆豆</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">荷蘭兔</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (2).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">漢子</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">5歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (3).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">香香兒</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">2歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (4).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Mocha</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">荷蘭兔</span><span class="pet-data yellow-data">12歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (5).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Gina</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">垂耳兔</span><span class="pet-data yellow-data">6歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (6).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">黃漢清</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">4歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (7).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">姍姍</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">米克斯</span><span class="pet-data yellow-data">8歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (8).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">達文西</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">荷蘭兔</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (9).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">漢摩拉比</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">垂耳兔</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/rabbit/rabbit (10).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Faker</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">獅子兔</span><span class="pet-data yellow-data">1歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+            </div>
+            <div class="tab-content" id="content-4">
+                <section>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (1).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Mice</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">三線鼠</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (2).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">勞淑</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">三線鼠</span><span class="pet-data yellow-data">2歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (3).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">薯餅</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">黃金鼠</span><span class="pet-data yellow-data">2歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (4).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">米妮</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">三線鼠</span><span class="pet-data yellow-data">2歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (5).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">龍貓</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">黃金鼠</span><span class="pet-data yellow-data">6歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (6).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">oreo</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">三線鼠</span><span class="pet-data yellow-data">4歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (7).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">哈姆太郎</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">加卡利亞倉鼠</span><span class="pet-data yellow-data">8歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (8).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">花生</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">三線鼠</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (9).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">可口可樂</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">加卡利亞倉鼠</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/mouse/mouse (10).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Peach</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">三線鼠</span><span class="pet-data yellow-data">1歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+            </div>
+            <div class="tab-content" id="content-5">
+                <section>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (1).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Will</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">文鳥</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (2).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">洛基</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">虎皮鸚鵡</span><span class="pet-data yellow-data">5歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (3).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">Anne</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">八哥鳥</span><span class="pet-data yellow-data">2歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (4).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">安妮</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">文鳥</span><span class="pet-data yellow-data">2歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (5).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">心湄</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">虎皮鸚鵡</span><span class="pet-data yellow-data">6歲</span><span class="pet-data yellow-data">安靜穩定</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (6).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">路亞</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">文鳥</span><span class="pet-data yellow-data">4歲</span><span class="pet-data yellow-data">親人黏人</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (7).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">波音</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">綠繡眼</span><span class="pet-data yellow-data">4歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (8).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">江植樹</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">虎皮鸚鵡</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">獨立自主</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (9).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">布丁</span><img src="/img/female.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">文鳥</span><span class="pet-data yellow-data">3歲</span><span class="pet-data yellow-data">害羞膽小</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <img class="pet-img" src="img/pet/bird/bird (10).jpg" alt="">
+                            <div class="pet-desc">
+                                <div><span class="name">蒂芬妮</span><img src="/img/male.svg" alt="icon-gender"></div>
+                                <div><span class="pet-data yellow-data">綠繡眼</span><span class="pet-data yellow-data">1歲</span><span class="pet-data yellow-data">活潑外向</span></div>
+                                <div><img class="img-18" src="/img/location.svg" alt="icon-location"><span class="pet-data">台北市</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+            </div>
+
+        </main>
+    </div>
+    <!-- 篩選 -->
+    <div id="filter-modal" class="hidden">
+        <div class="filter-top"><button class="close-btn"><img src="img/x.svg" alt=""></button>
+            <h4>篩選條件</h4>
+        </div>
+        <div class="filter-main">
+            <button class="open-sub-filter" data-target="dog-source-filter">
+                <div><img src="img/shelter.svg" alt="">來源</div><span
+                    id="dog-source-filter-display">請選擇來源</span>
+            </button>
+            <button class="open-sub-filter" data-target="dog-location-filter">
+                <div><img src="img/location-black.svg" alt="">地點</div><span
+                    id="dog-location-filter-display">請選擇地點</span>
+            </button>
+            <button class="open-sub-filter" data-target="dog-breed-filter">
+                <div><img src="img/breeds.svg" alt="">品種</div><span
+                    id="dog-breed-filter-display">請選擇品種</span>
+            </button>
+            <button class="open-sub-filter" data-target="dog-sexaul-filter">
+                <div><img src="img/gender.svg" alt="">性別</div><span
+                    id="dog-sexaul-filter-display">請選擇性別</span>
+            </button>
+            <button class="open-sub-filter" data-target="dog-age-filter">
+                <div><img src="img/age.svg" alt="">年齡</div><span id="dog-age-filter-display">請選擇年齡</span>
+            </button>
+             <button class="open-sub-filter" data-target="dog-personality-filter">
+                <div><img src="img/healthy-condition.svg" alt="">個性</div><span
+                    id="dog-personality-filter-display">請選擇個性</span>
+            </button>
+            <button class="open-sub-filter" data-target="dog-healthy-filter">
+                <div><img src="img/healthy-condition.svg" alt="">健康狀況</div><span
+                    id="dog-healthy-filter-display">請選擇健康狀況</span>
+            </button>
+        </div>
+        <div class="filter-bottom"><button class="primary-btn" id="dog-apply-filter">套用篩選</button></div>
+    </div>
+    <!-- 來源篩選視窗 -->
+    <div id="dog-source-filter" class="sub-filter hidden">
+        <div class="filter-top">
+            <button class="back-btn"><img src="img/chevron-left.svg" alt="">
+            </button>
+            <h4>選擇來源</h4>
+        </div>
+        <div class="filter-main">
+            <div class="switch-container">
+                <span>所有來源</span>
+                <input class="filter-all-source" type="checkbox" id="filterAllSource" />
+                <label for="filterAllSource">
+                </label>
+            </div>
+            <label class="selecter">
+                <input type="checkbox" name="source" value="">
+                <div class="select-content"> 個人送養</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+            <label class="selecter">
+                <input type="checkbox" name="source" value="">
+                <div class="select-content"> 台北收容所</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+            <label class="selecter">
+                <input type="checkbox" name="source" value="">
+                <div class="select-content"> 新北收容所</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+        </div>
+        <div class="filter-bottom"><button class="primary-btn" id="confirm-dog-source">確認</button></div>
+
+    </div>
+    <!-- 地點篩選視窗 -->
+    <div id="dog-location-filter" class="sub-filter hidden">
+        <div class="filter-top"><button class="back-btn"><img src="img/chevron-left.svg" alt=""></button>
+            <h4>選擇地點</h4>
+        </div>
+        <div class="filter-main">
+            <div class="switch-container">
+                <span>所有地點</span>
+                <input class="filter-all-location" type="checkbox" id="filterAllLoation" />
+                <label for="filterAllLoation">
+                </label>
+            </div>
+            <label class="selecter">
+                <input type="checkbox" name="location" value="KLU">
+                <div class="select-content">基隆市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="TPE">
+                <div class="select-content">台北市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="TPH">
+                <div class="select-content">新北市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="TYC">
+                <div class="select-content">桃園市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="HSH">
+                <div class="select-content">新竹縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="HSC">
+                <div class="select-content">新竹市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="MAL">
+                <div class="select-content">苗栗縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="TXG">
+                <div class="select-content">台中市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="CWH">
+                <div class="select-content">彰化縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="YLH">
+                <div class="select-content">雲林縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="CHY">
+                <div class="select-content">嘉義縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="CHI">
+                <div class="select-content">嘉義市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="NTO">
+                <div class="select-content">南投縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="TNN">
+                <div class="select-content">台南市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="KHH">
+                <div class="select-content">高雄市</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="IUH">
+                <div class="select-content">屏東縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="ILN">
+                <div class="select-content">宜蘭縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="HWA">
+                <div class="select-content">花蓮縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="TTT">
+                <div class="select-content">台東縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="KMN">
+                <div class="select-content">金門縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="PEH">
+                <div class="select-content">澎湖縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="location" value="LNN">
+                <div class="select-content">連江縣</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+        </div>
+        <div class="filter-bottom"><button class="primary-btn" id="confirm-dog-location">確認</button></div>
+    </div>
+    <!-- 品種篩選視窗 -->
+    <div id="dog-breed-filter" class="sub-filter hidden">
+        <div class="filter-top">
+            <button class="back-btn"><img src="img/chevron-left.svg" alt=""></button>
+            <h4>選擇品種</h4>
+        </div>
+        <div class="filter-main">
+            <div class="switch-container">
+                <span>所有品種</span>
+                <input class="filter-all-breed" type="checkbox" id="filterAllBreed" />
+                <label for="filterAllBreed">
+                </label>
+            </div>
+            <label class="selecter">
+                <input type="checkbox" name="breed" value="">
+                <div class="select-content"> 長毛臘腸狗</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+            <label class="selecter">
+                <input type="checkbox" name="breed" value="">
+                <div class="select-content"> 長毛臘腸狗</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+            <label class="selecter">
+                <input type="checkbox" name="breed" value="">
+                <div class="select-content"> 長毛臘腸狗</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+        </div>
+        <div class="filter-bottom"><button class="primary-btn" id="confirm-dog-breed">確認</button></div>
+    </div>
+    <!-- 性別篩選視窗 -->
+    <div id="dog-sexaul-filter" class="sub-filter hidden">
+        <div class="filter-top">
+            <button class="back-btn"><img src="img/chevron-left.svg" alt=""></button>
+            <h4>選擇性別</h4>
+        </div>
+        <div class="filter-main">
+            <label class="selecter">
+                <input type="checkbox" name="sexaul" value="male">
+                <div class="select-content">男生</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="sexaul" value="female">
+                <div class="select-content">女生</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+        </div>
+        <div class="filter-bottom"><button class="primary-btn" id="confirm-dog-sexaul">確認</button></div>
+    </div>
+    <!-- 年齡視窗 -->
+    <div id="dog-age-filter" class="sub-filter hidden">
+        <div class="filter-top">
+            <button class="back-btn"><img src="img/chevron-left.svg" alt=""></button>
+            <h4>選擇年齡</h4>
+        </div>
+        <div class="filter-main">
+            <div class="switch-container">
+                <span>所有年齡</span>
+                <input class="filter-all-age" type="checkbox" id="fitlerAllAge" />
+                <label for="fitlerAllAge">
+                </label>
+            </div>
+            <div class="select-container">
+                <div class="slider-container">
+
+                    <input type="range" id="minRange" min="0" max="16" value="1">
+                    <div class="tooltip" id="tooltipMin">20</div>
+                    <input type="range" id="maxRange" min="" max="16" value="15">
+
+                    <div class="tooltip" id="tooltipMax">80</div>
+                    <div class="slider-track"></div>
+                </div>
+                <p style="display: none;">最小值: <span id="minValue">20</span></p>
+                <p style="display: none;">最大值: <span id="maxValue">80</span></p>
+            </div>
+        </div>
+        <div class="filter-bottom"><button class="primary-btn" id="confirm-age">確認</button></div>
+    </div>
+    <!-- 個性篩選視窗 -->
+    <div id="dog-personality-filter" class="sub-filter hidden">
+        <div class="filter-top">
+            <button class="back-btn"><img src="img/chevron-left.svg" alt=""></button>
+            <h4>選擇個性</h4>
+        </div>
+        <div class="filter-main">
+            <div class="switch-container">
+                <span>全選</span>
+                <input class="filter-all-personality" type="checkbox" id="filterAllPersonality" />
+                <label for="filterAllPersonality">
+                </label>
+            </div>
+            <label class="selecter">
+                <input type="checkbox" name="dogPersonality" value="">
+                <div class="select-content">活潑外向</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="dogPersonality" value="">
+                <div class="select-content">安靜穩定</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="dogPersonality" value="">
+                <div class="select-content">親人黏人</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="dogPersonality" value="">
+                <div class="select-content">獨立自主</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="dogPersonality" value="">
+                <div class="select-content">害羞膽小</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+        </div>
+
+        <div class="filter-bottom"><button class="primary-btn" id="confirm-dog-personality">確認</button></div>
+    </div>
+    <!-- 健康狀況篩選視窗 -->
+    <div id="dog-healthy-filter" class="sub-filter hidden">
+        <div class="filter-top">
+            <button class="back-btn"><img src="img/chevron-left.svg" alt=""></button>
+            <h4>選擇健康狀況</h4>
+        </div>
+        <div class="filter-main">
+            <div class="switch-container">
+                <span>全選</span>
+                <input class="filter-all-healthy" type="checkbox" id="filterAllHealthy" />
+                <label for="filterAllHealthy">
+                </label>
+            </div>
+            <label class="selecter">
+                <input type="checkbox" name="dogHealthy" value="male">
+                <div class="select-content">已施打疫苗</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="dogHealthy" value="female">
+                <div class="select-content">已施打狂犬病疫苗</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="dogHealthy" value="female">
+                <div class="select-content">已結紮</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+
+            <label class="selecter">
+                <input type="checkbox" name="dogHealthy" value="female">
+                <div class="select-content">無疾病與傷殘</div>
+                <img src="/img/check.svg" alt="">
+            </label>
+        </div>
+
+        <div class="filter-bottom"><button class="primary-btn" id="confirm-dog-healthy">確認</button></div>
+    </div>
+
+    <script>
+        // tab js
+        document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".pet-tab > div");
+    const contents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+            // 取得當前點擊的 tab ID
+            const tabId = this.getAttribute("data-tab");
+
+            // 先移除所有 tab 的 active 狀態，還原 img src，並加回 non-actived
+            tabs.forEach(t => {
+                t.classList.remove("active");
+                let img = t.querySelector("img");
+                img.classList.add("non-actived"); // 加回 non-actived 類別
+                img.src = img.src.replace("-actived.svg", ".svg"); // 恢復原始圖片
+            });
+
+            // 先隱藏所有內容
+            contents.forEach(c => c.classList.remove("active"));
+
+            // 設定當前點擊的 tab 為 active，並更新 img src
+            this.classList.add("active");
+            let img = this.querySelector("img");
+            img.classList.remove("non-actived"); // 移除 non-actived 類別
+            img.src = img.src.replace(".svg", "-actived.svg");
+
+            // 顯示對應的內容
+            document.getElementById(`content-${tabId}`).classList.add("active");
+        });
+    });
+});
+
+
+        // filter js
+        document.getElementById("filter-btn").addEventListener("click", function () {
+            document.getElementById("filter-modal").classList.remove("hidden");
+        });
+
+        // 監聽所有開啟 `sub-filter` 的按鈕
+        document.querySelectorAll(".open-sub-filter").forEach(btn => {
+            btn.addEventListener("click", function () {
+                let targetId = this.getAttribute("data-target");
+
+                // 確保主篩選視窗隱藏
+                document.getElementById("filter-modal").classList.add("hidden");
+
+                // 先關閉所有 `sub-filter`
+                document.querySelectorAll(".sub-filter").forEach(sub => sub.classList.add(
+                    "hidden"));
+
+                // 顯示選擇的 `sub-filter`
+                document.getElementById(targetId).classList.remove("hidden");
+            });
+        });
+
+        // 監聽所有 `sub-filter` 的「返回」按鈕
+        document.querySelectorAll(".back-btn").forEach(btn => {
+            btn.addEventListener("click", function () {
+                // 隱藏當前 `sub-filter`
+                this.closest(".sub-filter").classList.add("hidden");
+
+                // 顯示主篩選視窗
+                document.getElementById("filter-modal").classList.remove("hidden");
+            });
+        });
+    </script>
+
+</body>
+<script>
+    // 年齡slider bar
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterAllAge = document.querySelector(".filter-all-age");
+        const minRange = document.getElementById("minRange");
+        const maxRange = document.getElementById("maxRange");
+        const minValue = document.getElementById("minValue");
+        const maxValue = document.getElementById("maxValue");
+        const tooltipMin = document.getElementById("tooltipMin");
+        const tooltipMax = document.getElementById("tooltipMax");
+        const sliderTrack = document.querySelector(".slider-track");
+
+        function updateSlider() {
+            let min = parseInt(minRange.value);
+            let max = parseInt(maxRange.value);
+
+            minValue.textContent = formatAge(min);
+            maxValue.textContent = formatAge(max);
+            tooltipMin.textContent = formatAge(min);
+            tooltipMax.textContent = formatAge(max);
+
+            let percentMin = (min / 16) * 100;
+            let percentMax = (max / 16) * 100;
+
+            sliderTrack.style.left = percentMin + "%";
+            sliderTrack.style.width = (percentMax - percentMin) + "%";
+
+            tooltipMin.style.left = percentMin + "%";
+            tooltipMax.style.left = percentMax + "%";
+
+            if (max - min < minGap) {
+                if (event.target === minRange) {
+                    minRange.value = max - minGap;
+                } else {
+                    maxRange.value = min + minGap;
+                }
+            }
+        }
+
+        function formatAge(value) {
+            if (value == 0) return "1歲⭣";
+            if (value == 16) return "15歲⭡";
+            return value + "歲";
+        }
+
+        // 監聽滑桿輸入事件
+        minRange.addEventListener("input", updateSlider);
+        maxRange.addEventListener("input", updateSlider);
+
+        // 監聽「全部年齡」toggle
+        filterAllAge.addEventListener("change", function () {
+            if (this.checked) {
+                minRange.value = minRange.min; // 設為 0
+                maxRange.value = maxRange.max; // 設為 16
+                updateSlider(); // 更新 UI
+            }
+        });
+
+        // 當用戶手動調整滑桿時，自動關閉「全部年齡」toggle
+        minRange.addEventListener("input", function () {
+            filterAllAge.checked = false;
+        });
+
+        maxRange.addEventListener("input", function () {
+            filterAllAge.checked = false;
+        });
+
+        // 初始化
+        updateSlider();
+    });
+
+    document.querySelectorAll(".primary-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+            // 找到當前副篩選頁
+            const subFilter = this.closest(".sub-filter");
+            if (!subFilter) return;
+
+            // 取得該副篩選頁對應的主篩選顯示區塊 ID
+            const targetId = subFilter.id.replace("-filter", "-filter-display");
+            const displayElement = document.getElementById(targetId);
+            if (!displayElement) return;
+
+            // 找到該篩選頁內被選中的選項
+            const selectedOptions = subFilter.querySelectorAll("input[type='checkbox']:checked");
+            const count = selectedOptions.length;
+
+            // 更新主篩選頁的顯示文字與顏色
+            if (count > 0) {
+                displayElement.textContent = `已選擇 ${count} 個選項`;
+                displayElement.style.color = "#444"; // 變更文字顏色
+            } else {
+                displayElement.textContent = "請選擇";
+                displayElement.style.color = ""; // 恢復預設顏色
+            }
+
+            // 隱藏副篩選頁，回到主篩選頁
+            subFilter.classList.add("hidden");
+            document.getElementById("filter-modal").classList.remove("hidden");
+
+            // 更新「套用篩選」按鈕的狀態
+            updateApplyButtonState();
+        });
+    });
+
+    // 初始化：所有副篩選的確認按鈕預設為 disabled
+    document.querySelectorAll(".sub-filter .primary-btn").forEach((button) => {
+        button.disabled = true;
+    });
+
+    // 監聽所有副選單的選項變化，當至少選擇一個選項時才啟用「確認」按鈕
+    document.querySelectorAll(".sub-filter input[type='checkbox']").forEach((checkbox) => {
+        checkbox.addEventListener("change", function () {
+            // 找到最近的副篩選頁（適用於所有篩選）
+            const subFilter = this.closest(".sub-filter");
+            if (!subFilter) return;
+
+            const confirmButton = subFilter.querySelector(".primary-btn");
+            const hasChecked = subFilter.querySelectorAll("input[type='checkbox']:checked").length > 0;
+
+            confirmButton.disabled = !hasChecked; // 若沒有選擇，保持 disabled
+        });
+    });
+
+    // 更新「套用篩選」按鈕狀態的函式
+    function updateApplyButtonState() {
+        const applyButton = document.getElementById("dog-apply-filter");
+        const allFilters = document.querySelectorAll("#filter-modal .filter-main span");
+
+        // 檢查是否至少有一個選項不是「請選擇...」
+        const hasSelection = Array.from(allFilters).some(span => !span.textContent.includes("請選擇"));
+
+        applyButton.disabled = !hasSelection; // 若沒有選擇，禁用按鈕
+    }
+
+    // 點擊「篩選」按鈕時顯示篩選彈窗
+    document.getElementById("filter-btn").addEventListener("click", function () {
+        document.getElementById("filter-modal").classList.remove("hidden");
+        updateApplyButtonState();
+    });
+
+    // 點擊「關閉」按鈕時隱藏篩選彈窗
+    document.querySelector(".close-btn").addEventListener("click", function () {
+        document.getElementById("filter-modal").classList.add("hidden");
+    });
+
+    // 初次載入時，檢查按鈕狀態
+    updateApplyButtonState();
+</script>
+
+</html>

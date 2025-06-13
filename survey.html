@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>問卷調查</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/survey.css">
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        /*** Checkbox Toggle（Select All） ***/
+        function setupCheckboxToggle(selectAllClass, checkboxClass) {
+            const selectAll = document.querySelector(selectAllClass);
+            const checkboxes = document.querySelectorAll(`${checkboxClass} input[type='checkbox']`);
+
+            if (selectAll && checkboxes.length) {
+                selectAll.addEventListener("change", () => {
+                    checkboxes.forEach(cb => cb.checked = selectAll.checked);
+                });
+                checkboxes.forEach(cb => {
+                    cb.addEventListener("change", () => {
+                        selectAll.checked = [...checkboxes].every(cb => cb.checked);
+                    });
+                });
+            }
+        }
+
+        // 套用到各個區塊
+        ["location", "breeds", "healthy"].forEach(group => {
+            setupCheckboxToggle(`.select-all-${group}`, `.${group}-checkbox`);
+        });
+
+        /*** 年齡滑桿 Toggle + 雙滑桿同步 ***/
+        const selectAllAge = document.querySelector(".select-all-age");
+        const minRange = document.getElementById("minRange");
+        const maxRange = document.getElementById("maxRange");
+        const minValue = document.getElementById("minValue");
+        const maxValue = document.getElementById("maxValue");
+        const tooltipMin = document.getElementById("tooltipMin");
+        const tooltipMax = document.getElementById("tooltipMax");
+        const sliderTrack = document.querySelector(".slider-track");
+        const minGap = 1;
+
+        function formatAge(value) {
+            if (value == 0) return "1歲⭣";
+            if (value == 16) return "15歲⭡";
+            return value + "歲";
+        }
+
+        function updateSlider() {
+            let min = parseInt(minRange.value);
+            let max = parseInt(maxRange.value);
+
+            if (max - min < minGap) {
+                if (event.target === minRange) minRange.value = max - minGap;
+                else maxRange.value = min + minGap;
+                return; // 防止UI錯誤
+            }
+
+            const percentMin = (min / 16) * 100;
+            const percentMax = (max / 16) * 100;
+
+            [minValue.textContent, maxValue.textContent] = [formatAge(min), formatAge(max)];
+            [tooltipMin.textContent, tooltipMax.textContent] = [formatAge(min), formatAge(max)];
+            sliderTrack.style.left = percentMin + "%";
+            sliderTrack.style.width = (percentMax - percentMin) + "%";
+            tooltipMin.style.left = percentMin + "%";
+            tooltipMax.style.left = percentMax + "%";
+        }
+
+        if (minRange && maxRange && selectAllAge) {
+            minRange.addEventListener("input", e => {
+                selectAllAge.checked = false;
+                updateSlider(e);
+            });
+            maxRange.addEventListener("input", e => {
+                selectAllAge.checked = false;
+                updateSlider(e);
+            });
+            selectAllAge.addEventListener("change", () => {
+                if (selectAllAge.checked) {
+                    minRange.value = minRange.min;
+                    maxRange.value = maxRange.max;
+                    updateSlider();
+                }
+            });
+            updateSlider();
+        }
+
+        /*** 題目頁面翻頁邏輯 ***/
+        const surveyDivs = Array.from(document.querySelectorAll('[id^="survey"]'));
+        let currentPage = 0;
+
+        function updatePage(newPage) {
+            if (newPage >= 0 && newPage < surveyDivs.length) {
+                surveyDivs[currentPage].style.display = "none";
+                surveyDivs[newPage].style.display = "block";
+                currentPage = newPage;
+            }
+        }
+
+        surveyDivs.forEach((div, i) => {
+            div.style.display = i === 0 ? "block" : "none";
+        });
+
+        document.querySelectorAll(".next-btn").forEach(btn => {
+            btn.addEventListener("click", () => updatePage(currentPage + 1));
+        });
+
+        document.querySelectorAll(".prev-btn").forEach(btn => {
+            btn.addEventListener("click", () => updatePage(currentPage - 1));
+        });
+    });
+</script>
+
+</head>
+
+<body>
+    <div id="survey1">
+        <div class="survey-top">
+            <a href="#">
+                <img src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn"
+                type="button">略過</button>
+        </div>
+        <div class="animal-bg">
+            <div class="cat">
+                <img src="/img/survey-cat.png" alt="">
+            </div>
+            <div class="rabbit">
+                <img src="/img/survey-rabbit.png" alt="">
+            </div>
+            <div class="dog">
+                <img src="/img/survey-dog.png" alt="">
+            </div>
+        </div>
+        <p>回答一些簡單的問題，讓我們幫助您更快速的找到理想的寵物！</p>
+        <div class="survey-bottom">
+            <button class="primary-btn survey-btn next-btn" type="button">開始作答</button>
+        </div>
+
+    </div>
+    <div>
+        <div id="survey2">
+            <div class="survey-top">
+                <a href="#">
+                    <img class="prev-btn" src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn"
+                    type="button">略過</button>
+            </div>
+            <div class="survey-step">
+                <div class="step-bg">
+                    <div class="step-now"></div>
+                </div>
+                <div class="survey-num">1/8</div>
+            </div>
+            <div class="survey-main">
+                <p>請問你是？</p>
+                <div>
+                    <div class="select-container">
+                        <label class="selecter">
+                            <input type="radio" name="character" value="adopters">
+                            <div class="select-content">領養者</div>
+                            <img src="/img/check.svg" alt="">
+                        </label>
+
+                        <label class="selecter">
+                            <input type="radio" name="character" value="caretakers">
+                            <div class="select-content">送養者</div>
+                            <img src="/img/check.svg" alt="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="survey-bottom">
+                <button class="primary-btn survey-btn next-btn" type="button">下一步</button>
+            </div>
+        </div>
+
+        <div id="survey3">
+            <div class="survey-top">
+                <a href="#">
+                    <img class="prev-btn" src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn"
+                    type="button">略過</button>
+            </div>
+            <div class="survey-step">
+                <div class="step-bg">
+                    <div class="step-now"></div>
+                </div>
+                <div class="survey-num">2/8</div>
+            </div>
+            <div class="survey-main">
+                <p>請問你想領養的動物種類是？</p>
+                <div>
+                    <div class="select-container">
+                        <label class="selecter">
+                            <input type="radio" name="animalType" value="dogs">
+                            <div class="select-content">狗類</div>
+                            <img src="/img/check.svg" alt="">
+                        </label>
+
+                        <label class="selecter">
+                            <input type="radio" name="animalType" value="cats">
+                            <div class="select-content">貓類</div>
+                            <img src="/img/check.svg" alt="">
+                        </label>
+
+                        <label class="selecter">
+                            <input type="radio" name="animalType" value="mice">
+                            <div class="select-content">鼠類</div>
+                            <img src="/img/check.svg" alt="">
+                        </label>
+
+                        <label class="selecter">
+                            <input type="radio" name="animalType" value="rabbits">
+                            <div class="select-content">兔類</div>
+                            <img src="/img/check.svg" alt="">
+                        </label>
+
+                        <label class="selecter">
+                            <input type="radio" name="animalType" value="birds">
+                            <div class="select-content">鳥類</div>
+                            <img src="/img/check.svg" alt="">
+                        </label>
+
+                        <label class="selecter">
+                            <input type="radio" name="animalType" value="none">
+                            <div class="select-content">以上皆無</div>
+                            <img src="/img/check.svg" alt="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="survey-bottom">
+                <button class="primary-btn survey-btn next-btn" type="button">下一步</button>
+            </div>
+        </div>
+
+        <div id="survey4">
+            <div class="survey-top">
+                <a href="#">
+                    <img class="prev-btn" src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn"
+                    type="button">略過</button>
+            </div>
+            <div class="survey-step">
+                <div class="step-bg">
+                    <div class="step-now"></div>
+                </div>
+                <div class="survey-num">3/8</div>
+            </div>
+            <div class="survey-main">
+                <p>請問你想領養的地區範圍是？</p>
+                <div class="switch-container">
+                    <span>所有地點</span>
+                    <input class="select-all-location" type="checkbox" id="allLocation" />
+                    <label for="allLocation">
+                    </label>
+                </div>
+                <div class="select-container location-checkbox">
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="KLU">
+                        <div class="select-content">基隆市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="TPE">
+                        <div class="select-content">台北市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="TPH">
+                        <div class="select-content">新北市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="TYC">
+                        <div class="select-content">桃園市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="HSH">
+                        <div class="select-content">新竹縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="HSC">
+                        <div class="select-content">新竹市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="MAL">
+                        <div class="select-content">苗栗縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="TXG">
+                        <div class="select-content">台中市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="CWH">
+                        <div class="select-content">彰化縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="YLH">
+                        <div class="select-content">雲林縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="CHY">
+                        <div class="select-content">嘉義縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="CHI">
+                        <div class="select-content">嘉義市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="NTO">
+                        <div class="select-content">南投縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="TNN">
+                        <div class="select-content">台南市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="KHH">
+                        <div class="select-content">高雄市</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="IUH">
+                        <div class="select-content">屏東縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="ILN">
+                        <div class="select-content">宜蘭縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="HWA">
+                        <div class="select-content">花蓮縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="TTT">
+                        <div class="select-content">台東縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="KMN">
+                        <div class="select-content">金門縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="PEH">
+                        <div class="select-content">澎湖縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="animalLoacation" value="LNN">
+                        <div class="select-content">連江縣</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                </div>
+            </div>
+            <div class="survey-bottom">
+                <button class="primary-btn survey-btn next-btn" type="button">下一步</button>
+            </div>
+        </div>
+
+        <div id="survey5">
+            <div class="survey-top">
+                <a href="#">
+                    <img class="prev-btn" src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn"
+                    type="button">略過</button>
+            </div>
+            <div class="survey-step">
+                <div class="step-bg">
+                    <div class="step-now"></div>
+                </div>
+                <div class="survey-num">4/8</div>
+            </div>
+            <div class="survey-main">
+                <p>請問你想領養的寵物品種是？</p>
+                <div class="search-container">
+                    <input type="text" placeholder="搜尋你想領養的品種...">
+                    <img class="non-actived" src="/img/search.svg" alt="">
+                </div>
+                <div class="switch-container">
+                    <span>所有品種</span>
+                    <input class="select-all-breeds" type="checkbox" id="allBreeds" />
+                    <label for="allBreeds">
+                    </label>
+                </div>
+                <div class="select-container breeds-checkbox">
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">米克斯<span>(344)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">柴犬<span>(102)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">黃金獵犬<span>(96)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">貴賓狗<span>(91)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">拉不拉多<span>(73)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">馬爾濟斯<span>(72)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">長毛臘腸狗<span>(54)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">傑克羅素梗<span>(50)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">柯基<span>(48)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">哈士奇<span>(41)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">約克夏<span>(20)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">法國鬥牛犬<span>(16)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">杜賓犬<span>(14)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">邊境牧羊犬<span>(13)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">比熊犬<span>(10)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">西高地白梗<span>(10)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">巴哥犬<span>(9)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">剛毛獵狐梗<span>(3)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">西施犬<span>(3)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">吉娃娃<span>(3)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">秋田犬<span>(3)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogBreeds" value="">
+                        <div class="select-content">德國狼犬<span>(1)</span></div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                </div>
+            </div>
+            <div class="survey-bottom">
+                <button class="primary-btn survey-btn next-btn" type="button">下一步</button>
+            </div>
+        </div>
+
+        <div id="survey6">
+            <div class="survey-top">
+                <a href="#">
+                    <img class="prev-btn" src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn"
+                    type="button">略過</button>
+            </div>
+            <div class="survey-step">
+                <div class="step-bg">
+                    <div class="step-now"></div>
+                </div>
+                <div class="survey-num">5/8</div>
+            </div>
+            <div class="survey-main">
+                <p>請問你想領養的寵物性別是？</p>
+                <div class="select-container sexaul-check">
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogSexaul" value="male">
+                        <div class="select-content">男生</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogSexaul" value="female">
+                        <div class="select-content">女生</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                </div>
+            </div>
+            <div class="survey-bottom">
+                <button class="primary-btn survey-btn next-btn" type="button">下一題</button>
+            </div>
+        </div>
+
+        <div id="survey7">
+            <div class="survey-top">
+                <a href="#">
+                    <img class="prev-btn" src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn"
+                    type="button">略過</button>
+            </div>
+            <div class="survey-step">
+                <div class="step-bg">
+                    <div class="step-now"></div>
+                </div>
+                <div class="survey-num">6/8</div>
+            </div>
+            <div class="survey-main">
+                <p>請問你想領養的寵物年齡是？</p>
+                <div class="switch-container">
+                    <span>所有年齡</span>
+                    <input class="select-all-age" type="checkbox" id="AllAge" />
+                    <label for="AllAge">
+                    </label>
+                </div>
+                <div class="select-container">
+                    <div class="slider-container">
+
+                        <input type="range" id="minRange" min="0" max="16" value="1">
+                        <div class="tooltip" id="tooltipMin">20</div>
+                        <input type="range" id="maxRange" min="" max="16" value="15">
+
+                        <div class="tooltip" id="tooltipMax">80</div>
+                        <div class="slider-track"></div>
+                    </div>
+                    <p style="display: none;">最小值: <span id="minValue">20</span></p>
+                    <p style="display: none;">最大值: <span id="maxValue">80</span></p>
+                </div>
+            </div>
+            <div class="survey-bottom">
+                <button class="primary-btn survey-btn next-btn" type="button">下一步</button>
+            </div>
+        </div>
+
+        <div id="survey8">
+            <div class="survey-top">
+                <a href="#">
+                    <img class="prev-btn" src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn next-btn"
+                    type="button">略過</button>
+            </div>
+            <div class="survey-step">
+                <div class="step-bg">
+                    <div class="step-now"></div>
+                </div>
+                <div class="survey-num">7/8</div>
+            </div>
+            <div class="survey-main">
+                <p>請問你想領養的寵物健康狀況是？</p>
+                <div class="switch-container">
+                    <span>所有健康狀況</span>
+                    <input class="select-all-healthy" type="checkbox" id="AllHealthy" />
+                    <label for="AllHealthy">
+                    </label>
+                </div>
+                <div class="select-container healthy-checkbox">
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogHealthy" value="male">
+                        <div class="select-content">已施打疫苗</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogHealthy" value="female">
+                        <div class="select-content">已施打狂犬病疫苗</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogHealthy" value="female">
+                        <div class="select-content">已結紮</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                    <label class="selecter">
+                        <input type="checkbox" name="dogHealthy" value="female">
+                        <div class="select-content">無疾病與傷殘</div>
+                        <img src="/img/check.svg" alt="">
+                    </label>
+
+                </div>
+            </div>
+            <div class="survey-bottom">
+                <button class="primary-btn survey-btn next-btn" type="button">下一步</button>
+            </div>
+        </div>
+
+        <div id="survey9">
+            <div class="survey-top">
+                <a href="#">
+                    <img class="prev-btn" src="img/chevron-left.svg" alt=""></a> <button class="link-btn survey-btn-sm next-btn"
+                    type="button">略過</button>
+            </div>
+            <div class="survey-step">
+                <div class="step-bg">
+                    <div class="step-now"></div>
+                </div>
+                <div class="survey-num">8/8</div>
+            </div>
+            <div class="survey-main">
+                <p>將以上選擇儲存為通知設定？</p>
+                <div>
+                    <img src="img/survey-alarm.svg" alt="">
+                    <p>儲存成通知設定後，</br>
+                        當有符合你偏好的動物出現時，</br>
+                        系統會主動通知你。</p>
+                </div>
+            </div>
+            <div class="survey-bottom">
+                <button class="secondary-btn survey-btn" type="button">先不要</button>
+                <button class="primary-btn survey-btn" type="button">儲存設定</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+</body>
+
+
+</html>
