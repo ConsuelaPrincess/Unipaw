@@ -1,0 +1,204 @@
+#survey1 {
+    background-image: url(/img/survey-bg.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 425px;
+    max-width: 100%;
+    padding: 16px 0;
+    
+}
+
+#survey1 .survey-top, #survey1 .survey-bottom {
+    background-color:rgba(0, 0, 0, 0);
+    box-shadow: none;
+}
+
+#survey1 p {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0 16px;
+    position: absolute;
+    bottom: 100px;
+}
+
+
+#survey1>.survey-top>a {
+    visibility: hidden;
+}
+
+.animal-bg {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cat {
+    position: absolute;
+    top: 0;
+    left: -10%
+}
+
+.rabbit {
+    position: absolute;
+    top: 20%;
+    right: -7%
+    
+}
+
+.dog {
+    position: absolute;
+    top: 50%;
+    left: -15%;
+}
+
+.survey-top {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 425px;
+    z-index: 999;
+}
+
+.survey-bottom {
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 16px;
+    width: 100%;
+    max-width: 425px;
+    z-index: 999;
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.04);
+}
+
+/* 問卷進度條 */
+.survey-step {
+    padding: 20px 16px;
+    margin-top: 52px;
+}
+
+.survey-step>.step-bg {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background-color: var(--border-color-gray);
+    border-radius: 10px;
+}
+
+.survey-step>.step-bg>.step-now {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 4px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+}
+
+#survey2 .survey-step>.step-bg>.step-now {
+    width: calc(100% / 8);
+}
+
+#survey3 .survey-step>.step-bg>.step-now {
+    width: calc(100% / 8 * 2);
+}
+
+#survey4 .survey-step>.step-bg>.step-now {
+    width: calc(100% / 8 * 3);
+}
+
+#survey5 .survey-step>.step-bg>.step-now {
+    width: calc(100% / 8 * 4);
+}
+
+#survey6 .survey-step>.step-bg>.step-now {
+    width: calc(100% / 8 * 5);
+}
+
+#survey7 .survey-step>.step-bg>.step-now {
+    width: calc(100% / 8 * 6);
+}
+
+#survey8 .survey-step>.step-bg>.step-now {
+    width: calc(100% / 8 * 7);
+}
+
+#survey9 .survey-step>.step-bg>.step-now {
+    width: calc(100% / 8 * 8);
+}
+
+.survey-step>.survey-num {
+    text-align: right;
+    padding-top: 12px;
+    font-size: 0.8rem;
+}
+
+.survey-main {
+    padding: 0 16px;
+    margin-bottom: 80px;
+}
+
+#survey9 .survey-main {
+    height: calc(100vh - 32px - 46px - 58px - 46px - 46px - 16px);
+}
+
+#survey9 .survey-bottom > .secondary-btn {
+   margin-bottom: 16px;
+}
+
+
+.survey-main>p {
+    font-size: 1rem;
+    margin: 0 0 12px 0;
+}
+
+#survey7 .switch-container {
+    margin-bottom: 40px;
+}
+
+#survey7 .select-container {
+    padding-top: 50px;
+}
+
+#survey9 .survey-main > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+
+#survey9 .survey-main > div > p{
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+
+@media (max-width: 375px) {
+
+    .cat>img,
+    .rabbit>img,
+    .dog>img {
+        max-width: 80%;
+    }
+
+    .cat {
+        left: -5%;
+    }
+
+    .rabbit {
+        right: -15%
+    }
+}
