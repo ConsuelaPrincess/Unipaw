@@ -1,0 +1,12 @@
+<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12.7739" r="7.40985" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5"/>
+<path d="M12 3.77618L12 6.95183" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M12 18.5959L12 21.7715" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M3.00232 12.7739L6.17797 12.7739" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M17.822 12.7739L20.9977 12.7739" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M11.3537 11.6347C11.9719 11.2778 12.7624 11.4896 13.1194 12.1078C13.2597 12.3509 13.3121 12.6206 13.2865 12.8801C13.3078 13.0578 13.3655 13.2302 13.4571 13.3863C13.5511 13.5466 13.6777 13.6841 13.8276 13.7905C13.903 13.8249 13.9746 13.8663 14.0414 13.9139C14.0477 13.9167 14.054 13.9196 14.0603 13.9223L14.0586 13.9263C14.3779 14.1616 14.585 14.5404 14.585 14.9675C14.585 15.6813 14.0064 16.26 13.2925 16.26C13.1078 16.26 12.9322 16.2212 12.7733 16.1515L12.7711 16.1545L12.7571 16.1442C12.679 16.1086 12.6051 16.0655 12.5363 16.0158C12.3681 15.9391 12.1844 15.8989 11.9975 15.8993C11.8122 15.8996 11.6303 15.9398 11.4637 16.0158C11.3949 16.0655 11.321 16.1086 11.2429 16.1442C11.2369 16.1486 11.2309 16.153 11.2249 16.1575L11.222 16.1535C11.0643 16.222 10.8903 16.26 10.7075 16.26C9.99363 16.26 9.41495 15.6813 9.41495 14.9675C9.41495 14.5404 9.62211 14.1616 9.94143 13.9263L9.93969 13.9223C9.94602 13.9196 9.95232 13.9167 9.95859 13.9139C10.0254 13.8663 10.097 13.8249 10.1724 13.7905C10.3223 13.6841 10.4488 13.5466 10.5429 13.3863C10.6343 13.2305 10.692 13.0584 10.7134 12.8811C10.7041 12.7866 10.7054 12.6919 10.7168 12.5986C10.7643 12.2093 10.9879 11.8459 11.3537 11.6347Z" fill="black" style="fill:black;fill-opacity:1;"/>
+<circle cx="9.17995" cy="12.4014" r="0.940016" fill="black" style="fill:black;fill-opacity:1;"/>
+<circle cx="10.59" cy="10.2277" r="0.940016" fill="black" style="fill:black;fill-opacity:1;"/>
+<circle cx="13.41" cy="10.2277" r="0.940016" fill="black" style="fill:black;fill-opacity:1;"/>
+<circle cx="14.8201" cy="12.4014" r="0.940016" fill="black" style="fill:black;fill-opacity:1;"/>
+</svg>
